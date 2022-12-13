@@ -1,0 +1,305 @@
+*{
+    font-family: 'Montserrat', sans-serif;
+}
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    position: relative;
+}
+a{
+    text-decoration: none;
+}
+.view{
+    height: 100vh;
+    overflow:hidden;
+    position: relative;
+}
+header{
+    z-index: 10;
+    box-shadow: 0px 0px 6px #888;
+    position: fixed;
+    width: 100vw;
+}
+
+
+.logo-div{
+    background-color: #ADADAD;
+    height: 135px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom:1px solid rgb(148, 153, 163) ;
+  animation: rotate 500s linear infinite;
+  animation-play-state: paused;
+  animation-delay: calc(var(--scroll) * -1s);
+  animation-iteration-count: 1;
+  animation-fill-mode: both;
+}
+.logo-div img{
+    width: 490px;
+    animation: rrr 500s linear infinite;
+    animation-play-state: paused;
+    animation-delay: calc(var(--scroll) * -.6s);
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
+
+}
+@keyframes rrr {
+    to {
+        width: 380px;
+    }
+  }
+@keyframes rotate {
+    to {
+      height: 100px;
+    }
+  }
+
+.logo-div .mail{
+    padding: 20px;
+    display: flex;
+    align-items: center;
+}
+.logo-div span{
+    padding: 20px;
+    color: #fff;
+    font-size: 1.3vw;
+}
+.logo-div .insta{
+    width : 3vw;
+    padding-left: 20vw;
+    padding-right: 30px;
+}
+.nav{
+    display: none;
+}
+.-nav{
+    height: 40px;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-around;
+}
+
+.-nav ul{
+    height: 100%;
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    align-items: center;
+}
+.-nav ul li{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.-nav a{
+    color: #888;
+    font-size: 1.2em;
+    font-variant-caps: all-petite-caps;
+    transition: color .2s ease-in-out;
+}
+.nav a{
+    color: #888;
+    font-size: 1.2em;
+    font-variant-caps: all-petite-caps;
+    transition: color .2s ease-in-out;
+}
+.-nav a:hover{
+    animation: ease-in-out 2s;
+    color: rgb(0, 0, 0);
+ }
+
+/*Images slider--------------------------------------------------*/
+
+.hero {
+    overflow: hidden;
+    width:100%;
+    top: 100px;
+    bottom: 0;
+    width: 100%;
+    position: fixed;
+}
+.hero .swiper{
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.hero .swiper-slide img{
+    width: 100%;
+    position: absolute;
+    top: -9999px;
+    bottom: -9999px;
+    left: -9999px;
+    right: -9999px;
+    margin: auto;
+    box-shadow: 0px 0px 10px #888;
+}
+/*----------------------------------------------------------------*/
+
+.main-content{
+    background-color: #fff;
+    width: 100%;
+    position: absolute;
+    z-index: 5;
+    top: 100%;
+    box-shadow: 0px 0px 10px #888;
+}
+
+/*media screen < 980------------------------------------------*/
+
+@media screen and (max-width: 980px) {
+    .logo-div img{
+        width: 380px;
+        animation: unset;
+    }
+    .logo-div .mail{
+        width: 0;
+        margin: 0;
+        padding: 0;
+    }
+    .logo-div .insta{
+        width: 0;
+        margin: 0;
+        padding: 0;
+    }
+    .logo-div span{
+        display: none;
+    }
+    .logo-div{
+        height: 110px;
+        animation: unset;
+    }
+
+}
+@media screen and (max-width: 650px) {
+    .logo-div img{
+        width: 250px;
+    }
+    .logo-div{
+        height: 90px;
+        
+    }
+    
+}
+@media (max-aspect-ratio: 27/18) {
+    
+    .hero{
+        position: relative;
+        height: 66vw;
+        z-index: -5;
+        margin-bottom: -20px;
+    }
+
+    .main-content{
+        position: unset;
+    }
+    .hero{
+        margin-bottom: 80px;
+    }
+    @media screen and (min-width: 650px) { 
+        .hero{
+            margin-bottom: 97px;
+        }
+    }
+    @media screen and (max-width: 980px) {
+        .hero{
+            top: 100px;
+            margin-bottom: 97px;
+        }
+    }
+    @media screen and (max-width: 650px) {
+        .hero{
+            top: 80px;
+            margin-bottom: 75px;
+        }
+    }
+}
+@media (min-aspect-ratio: 27/18) {
+
+}
+/*foldable nav------------------------------------------*/
+
+.menuu{
+    display: none;
+    float: right;
+    position: fixed;
+    z-index: 12;
+}
+.crs{
+    display: none;
+    float: right;
+    position: fixed;
+    z-index: 11;
+    background:none;
+    border: none;
+    font-size: 30px;
+    padding: 0;
+}
+
+
+@media screen and (max-width: 980px) {
+    .menuu{
+        display: unset;
+        top: 48px;
+        left: 28px;
+    }
+    .crs{
+        display: unset;
+        top: 37px;
+        left: 28px;
+    }
+    .-nav{
+        display: none;
+    }
+    .nav{
+        padding-top: 115px;
+        display: unset;
+        z-index: 9;
+        position: fixed;
+        float: left;
+        height: 100vh;
+        width: 100vw;
+        background-color: rgba(0, 0, 0, 0.9);
+        transform: translateY(-120%);
+        transition: transform .5s ease-in-out;
+    }
+    .nav a:hover{
+        animation: ease-in-out 2s;
+        color: rgb(105, 247, 100);
+     }
+    .nav ul{
+        display:block;
+        text-align: center;
+        padding: 0;
+    }
+    .nav ul li{
+        padding: 1.5vh 0;
+    }
+    .nav ul a{
+        font-size: 1.5em;
+    }
+
+    .show{
+        transform: translateY(0%);
+    }
+}
+@media screen and (max-width: 650px) {
+    .menuu{
+        top: 40px;
+        left: 20px;
+    }
+    .crs{
+        top: 29px;
+        left: 20px;
+    }
+
+}
+@media (max-aspect-ratio: 27/18) {
+
+}
+
+.none{
+    display: none;
+}
