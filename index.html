@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="./sources/favicon.svg">
+    <link rel="preconnect" href="https://fonts.gstatic.com/">
+    <link href="./sources/main.css" type="text/css" rel="stylesheet">
+    <link href="./sources/content.css" type="text/css" rel="stylesheet">
+    <link  rel="stylesheet"  href="./sources/swiper-bundle.min.css" />
+    <script src="./sources/swiper-bundle.min.js"></script>
+    <title>Home ~ Bika Consturction Ltd</title>
+</head>
+<body onload="onLoad()" onresize="reSize()">
+    <!--loading--------------------------> 
+    <div class="loading">
+    </div>
+    <style>
+        .loading{
+            background-color: rgb(255, 255, 255);
+            position: fixed;
+            z-index: 2000;
+            width: 100vw;
+            height: 100vh;
+            background-image: url(./loading.gif);
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+    </style>
+    
+        <!--light box--------------------------> 
+
+    <div class="light-box none">
+        <span class="pr">
+            <
+        </span>
+        <span class="nx">
+            >
+        </span>
+        <span class="cancel">
+            &times;
+        </span>
+        <span class="count">
+            1/4
+        </span>
+        <div class="image-box">
+            <img id="image22" src="./sources/50.jpg" alt="">
+        </div>
+    </div>
+    
+    <style>
+    .light-box {
+        position: fixed;
+        background-color: rgba(0, 0, 0, 0.98);
+        z-index: 1000;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+    }
+    .light-box span{
+        color: #999;
+    }
+    .pr{
+        font-size: 40px;
+        font-weight: 400;
+        float: left;
+        position: fixed;
+        top: 50vh;
+        cursor: pointer;
+    }
+    .nx{
+        font-size: 40px;
+        font-weight: 400;
+        float: right;
+        position: fixed;
+        right: 0;
+        top: 50vh;
+        cursor: pointer;
+    }
+    .cancel{
+        font-size: 40px;
+        font-weight: 400;
+        float: right;
+        position: fixed;
+        right: 10px;
+        top:10px;
+        cursor: pointer;
+    }
+    .count{
+        top:10px;
+        float: right;
+        position: fixed;
+        top:10px;
+
+    }
+    .image-box{
+        position: absolute;
+        float: left;
+        z-index: 1001;
+        width: 70vw;
+        left: 13vw;
+    }
+    .image-box img{
+        width: 100%;
+        object-fit: contain;
+    }
+    .none{
+        display: none;
+    }
+    </style>
+
+   <!---------------------------------------> 
+
+    <img  id="menuu" class="menuu" src="./sources/ham.svg" alt="menu/cross">
+    <button  id="crs" class="crs none" class="cross">&times;</button>
+    <div class="view" id="view">
+        <header>
+            <div class="logo-div">
+                <a class="mail" href="mailto:info@bikaconstruction.co.uk">
+                    <svg fill="white" width="30" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Pro 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) --><path d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"/></svg>
+                    <span>info@bikaconstruction.co.uk</span>
+                </a>
+                <a href="">
+                    <img src="./sources/bika-logo.svg" alt="bika construction logo">
+                </a>
+                <a class="insta" href="https://www.instagram.com/bikaconstruction/">
+                    <svg fill="white"   xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
+                </a>
+            </div>
+            <nav class="-nav">
+                <ul>
+                    <li><a href="https://bikaconstruction.co.uk/">Home</a></li>
+                    <li><a href="https://bikaconstruction.co.uk/about-us">About Us</a></li>
+                    <li><a href="https://bikaconstruction.co.uk/projects">Projects</a></li>
+                    <li><a href="https://bikaconstruction.co.uk/developments">Developments</a></li>
+                    <li><a href="https://bikaconstruction.co.uk/charity">Charity</a></li>
+                    <li><a href="https://bikaconstruction.co.uk/testimonials">Testimonials</a></li>
+                    <li><a href="https://bikaconstruction.co.uk/contact-us">Contact Us</a></li>
+                    <li><a href="https://bikaconstruction.co.uk/main/files/e-brochure.pdf" target="_blank">E-Brochure</a></li>
+                </ul>
+            </nav>
+        </header>
+        <nav class="nav">
+            <ul>
+                <li><a href="https://bikaconstruction.co.uk/">Home</a></li>
+                <li><a href="https://bikaconstruction.co.uk/about-us">About Us</a></li>
+                <li><a href="https://bikaconstruction.co.uk/projects">Projects</a></li>
+                <li><a href="https://bikaconstruction.co.uk/developments">Developments</a></li>
+                <li><a href="https://bikaconstruction.co.uk/charity">Charity</a></li>
+                <li><a href="https://bikaconstruction.co.uk/testimonials">Testimonials</a></li>
+                <li><a href="https://bikaconstruction.co.uk/contact-us">Contact Us</a></li>
+                <li><a href="https://bikaconstruction.co.uk/main/files/e-brochure.pdf" target="_blank">E-Brochure</a></li>
+            </ul>
+        </nav>
+        <div class="hero">
+            <div class="swiper">
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper">
+                <!-- Slides -->
+                <div class="swiper-slide">
+                    <img src="./sources/1.jpg" alt="">
+                </div>
+                <div class="swiper-slide">
+                    <img src="./sources/2.jpg" alt="">
+                </div>
+                <div class="swiper-slide">
+                    <img src="./sources/3.jpg" alt="">
+                </div>
+                <div class="swiper-slide">
+                    <img src="./sources/4.jpg" alt="">
+                </div>
+                <div class="swiper-slide">
+                    <img src="./sources/5.jpg" alt="">
+                </div>
+                <div class="swiper-slide">
+                    <img src="./sources/6.jpg" alt="">
+                </div>
+                
+                </div>
+                <!-- If we need pagination 
+                <div class="swiper-pagination"></div>
+                -->
+                
+                <!-- If we need navigation buttons -->
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            
+                <!-- If we need scrollbar 
+                <div class="swiper-scrollbar"></div>
+                -->
+            </div>
+
+
+
+        </div>
+    </div>
+    <div class="main-content">
+        <div class="first-container">
+            <div class="videoshow">
+                <h1>FEATURED PROJECT</h1>
+                <iframe  src="https://www.youtube.com/embed/xFDKUK_laJ4?rel=0&amp;controls=0&amp;showinfo=0&amp;autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" __idm_id__="196609"></iframe>
+            </div>
+            <div class="textarea1">
+                <h1>
+                    Building Value Partnered Approach
+                </h1>
+                <p>
+                    <strong>Bika Construction</strong> is a young, modern and driven company that delivers high quality, exceptional, projects which exceed both clients and consultants expectations. Our approach is simple, no matter what the issue is, find a solution, close the issue and focus back to finishing the project on time whilst closely monitoring quality.
+
+                    <br><br>As a family business we treat every project with utmost care and attention, and our well cared skilled workforce ensure the attention to detail and quality is top priority. We are confident that our partnered and value added approach will quickly grow the company to the next stage.
+                </p>
+                <button>
+                    Read More
+                </button>
+            </div>
+        </div>
+        <div class="second-container">
+            <h1>
+                Services
+            </h1>
+            <div class="swiper">
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper">
+                <!-- Slides -->
+                    <div class="swiper-slide">
+                        <h3>
+                            DEDIGN AND BUILD
+                        </h3>
+                        <p>We provide a full design and build service through direct collaboration and responsibility of the entire design team promoting cost savings and efficiency throughout the design and construction stages. Strict compliance and monitoring on budget and time at every stage of the project to ensure client expectations are not compromised.
+
+                            <strong>Key client advantages:</strong>
+                            Cost certainty early on, Builder input during design, ongoing budgeting, and value-engineering, Reduced change order potential, Single entity responsible for design and construction, Collaborative rather than adversarial relationship between architect and builder, Client can participate in subcontractor selection</p>
+                    </div>
+                    <div class="swiper-slide">
+                        <h3>
+                            SMALL WORK DIVISION
+                        </h3>
+                        <p> Our small works projects division ensures that these projects receive the same level of dedication, quality and attention as our larger contracts. We have a direct labour force plus a trusted supply chain of small subcontractors who ensure all works are carried out to the Bika Construction expectations and standards.</p>
+                    </div>
+                    <div class="swiper-slide">
+                        <h3>
+                            CONSTRUCTION
+                        </h3>
+                        <p>Our hands on partnering approach from pre-construction to final finished product along with after sales care is our company objective to exceed client and professional consultants expectations. Whether it’s a new build or refurbishment project, from demolition to basement formation and fit out, we thrive to deliver high quality clean construction. The past projects experience demonstrates the calibre of projects undertaken and experience.</p>
+                    </div>
+                    <div class="swiper-slide">
+                        <h3>
+                            MECHANICAL AND ELECTRICAL
+                        </h3>
+                        <p>We hold a vast amount of knowledge and experience of MEP installations on high end properties &amp; Apartment New Builds &amp; Office to redidential Conversion projects. We can advise clients on costs, design detail with interiors and taking the entire MEP package from conception to completion. We also have inhouse plumbing and electrical capacity.</p>
+                    </div>
+                    </div>
+                    <!-- If we need pagination -->
+                    <div class="swiper-pagination"></div>
+                    
+                    
+                    <!-- If we need navigation buttons -->
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                
+                    <!-- If we need scrollbar 
+                    <div class="swiper-scrollbar"></div>
+                    -->
+                
+            </div>
+        </div>
+        <div class="third-container">
+            <h1>
+                Current Projects
+            </h1>
+            <div class="tiles">
+                <div class="t1">
+                    <div class="bbm"><img  src="./sources/26.jpeg" alt=""></div>
+                    <p style="color: #63808d"><strong>REFURBISHMENT AND FITOUT OF 3,500FT<sup>2</sup> LUXURY APARTMENT</strong><br><span style="color: #adadad">199 Knightsbridge, London</span></p>
+                </div>
+                <div class="t1">
+                    <div class="bbm"><img  src="./sources/27.png" alt=""></div>
+                    <p  style="color: #63808d"><strong>BIKA DEVELOPMENTS OAK END WAY LTD<br>(7 New Build Apartments)</strong><br><span style="color: #adadad">42-44 Oak End Way, Gerrards Cross, Buckinghamshire</span></p>
+                    <a id="view-plans" href="#"  style="background-color: #63808d">Click Here to View Floor Plans</a>
+                </div>
+                <div class="t1">
+                    <div class="bbm"><img id="nnh" src="./sources/28.jpg" alt=""></div>
+                    <p style="color: #63808d"><strong>REFURBISHMENT 3NO. TOWNHOUSES INTO A LUXURY CLINIC</strong><br><span style="color: #adadad">Eaton Square, Belgravia, London</span></p>
+                </div>
+            </div>
+            <button>
+                View All
+            </button>
+        </div>
+        <div class="fourth-container">
+            <h1>
+                Current Projects
+            </h1>
+            <img src="./sources/Beauford.jpg" alt="">
+            <h4>
+                Covers come off £90m hotel-to-resi scheme in
+            </h4>
+            <p>
+                41-43 Beaufort Gardens is one of the most exclusive luxury developments to launch in Prime Central London this year, say agents…
+            </p>
+            <button>
+                View Article
+            </button>
+            <small ><strong>Source</strong>: primeresi.com</small>
+        </div>
+        <div class="fifth-container">
+            <h1>
+                What People Are Saying
+            </h1>
+            <div class="swiper">
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper">
+                <!-- Slides -->
+                    <div class="swiper-slide">
+                        <div class="slice">
+                            <div class="ffs"><img src="./sources/wal.jpg" alt=""></div>
+                            <h4>Nick Pritchett<br>On Behalf of Wolff</h4>
+                            <p>
+                                Sunny possesses exceptional organisational and negotiation skills. He is able to speak with clients, consultants and other specialists, as well has the multitude of contractors and sub-contractors on site. He has the ability to chair meetings, and is able to convey complex works and sequencing clearly and concisely. Sunny has a good understanding of programme and resourcing requirements, as well as a broad and deep understanding of materials and there application.
+                                <br>Sunny also has an eye for detail which is put to good use on the high end residential projects. Sunny remains personable throughout the construction process and has proved himself an invaluable member of the team.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="slice">
+                            <div class="ffs"><img src="./sources/mbp.jpg" alt=""></div>
+                            <h4>Malcolm Brady<br>for Michael Barclay Partnership LLP</h4>
+                            <p>
+                                I have known and worked with Sunny for a number of years across a range of projects in London and found him at all times and on all occasions to be knowledgeable, practical, focused and professional in his approach to and management of the project and its team members, and demonstrated a very organised approach to project management and coordination. He showed appreciation of the various disciplines, an understanding of the services each provide and was mindful of the resource and time needed for them to deliver these.
+                                <br>I believe that Sunny has a strong and broad experience of the build process, materially and contractually, across a number of sectors and forms and an ambition to broaden and improve that experience and his knowledge through active engagement with his projects and the professionals, consultants & craftsmen he deals with. His attention to detail and the quality of finish he insists upon is evident in the completed works
+                                <br>Finally, I have always found working with Sunny to be an enjoyable experience and appreciated, & welcomed, his calm manner and approach. Where conflict or debate arose he was measured in his response, mindful of his & others position while representing properly & professionally the needs and ambition of his client. I look forward to working with him again.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="slice">
+                            <div class="ffs"><img src="./sources/proun.jpg" alt=""></div>
+                            <h4>Peter Swain<br>Proun Architects</h4>
+                            <p>
+                                I have enjoyed working with Sunny in his role as main contractor on 2 projects in Mayfair, including a prestigious 11,300 square foot private house and 6 luxury apartments. Sunny is very hands on and strives to find practical solutions that do not compromise quality. Sunny’s willingness to help out the design team with a partnering approach to the contract is refreshing, and has led to the successful completion of these projects.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="slice">
+                            <div class="ffs"><img src="./sources/flowerKittle.png" alt=""></div>
+                            <h4>David Flower<br>FlowerKittle Architects</h4>
+                            <p>
+                                We have worked with BIKA construction on a couple of residential projects in 2020, both of which have presented significant challenges in terms of both programme and site logistics. Sunny and the wider BIKA team have been extremely proactive and forward-thinking in their approach to the construction and overcoming such challenges. The end finish has been good and we wouldn’t hesitate working with BIKA construction again in the future.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="slice">
+                            <div class="ffs"><img src="./sources/land-matters-agency.jpg" alt=""></div>
+                            <h4>Tatiana Preobrazhenskaya<br>Land Matters</h4>
+                            <p>
+                                We are incredibly pleased to work with Sunny and his team. They are very professional and reliable. We have been working with Bika Construction for 3 years now and now reached the stage that we are ready to give them exclusivity on our tenders if they have availability. Sunny is a very honest and commercial contractor; they provide a reasonable price and stick to it to the best they can. They think outside the box and provide creative solutions to avoid delays even if it means some abortive works at their end. Sunny employ his people so they are very reliable and could predict their timeline with greater certainty than other contractors. Finally what I like about Sunny is that he is always available to pick up the phone and discuss any issues – having gone through numerous contractors we value the relationships greatly.
+                            </p>
+                        </div>
+                    </div>
+                    </div>
+                    <!-- If we need pagination -->
+                    <div class="swiper-pagination"></div>
+                    
+                    
+                    <!-- If we need navigation buttons -->
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                
+                    <!-- If we need scrollbar 
+                    <div class="swiper-scrollbar"></div>
+                    -->
+                
+            </div>
+        </div>
+        <div class="footer-content">
+            <div class="rics">
+                <img src="./sources/ciobLogo.svg" alt="">
+                <img src="./sources/ricsLogo.svg" alt="">
+                <img src="./sources/chasLogo.svg" alt="">
+                <img src="./sources/fmb-logo.png" alt="">
+            </div>
+            <div class="footer">
+                <div class="footerSection">
+				<h3 class="footerTitle">USEFUL LINKS</h3>
+				<ul class="footerLinks">
+					<li><a href="/">Home</a></li>
+					<li><a href="/about-us">About Us</a></li>
+					<li><a href="/projects">Projects</a></li>
+					<li><a href="/charity">Charity</a></li>
+					<li><a href="/testimonials">Testimonials</a></li>
+					<li><a href="/contact-us">Contact Us</a></li>
+					<br>
+					<li><a href="/privacy-policy">Privacy Policy</a></li>
+					<li><a href="/cookie-policy">Cookie Policy</a></li>
+				</ul>
+				<br>
+                <a class="footerIconLink" href="https://www.instagram.com/bikaconstruction/" target="_blank"><svg fill="#212B36" width="40px"   xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg></a>
+            </div>
+					
+                <div class="footerSection2">
+				<h3 class="footerTitle">COMPANY INFORMATION</h3>
+				<p class="mainFooterText mainFooterText-sm"><strong>Bika Construction Ltd</strong> <br>1 Elmwood Park, <br>Gerrards Cross, <br>SL9 7EP</p>
+
+				<ul class="footerLinks">
+					<li><a href="tel:07974879225"><strong>Tel</strong>: 07974 879225</a></li>
+					<li><a href="mailto:info@bikaconstruction.co.uk"><strong>Email</strong>: info@bikaconstruction.co.uk</a></li>
+					<li><span><strong>Company Number</strong>: 11152663</span></li>
+					<li><span><strong>VAT Number</strong>: GB 300 4482 51</span></li>
+				</ul>
+				<br>
+				<p class="mainFooterText mainFooterText-sm"><strong>© 2022 Bika Contruction Ltd</strong></p>
+			
+			  </div>
+            </div>
+        </div>
+   
+    </div>
+<!-- light box------------------------------------->
+    <script>
+        document.querySelector('.cancel').addEventListener('click',()=>{
+        document.querySelector('.light-box').classList.add('none');
+        })
+        document.getElementById('view-plans').addEventListener('click',()=>{
+        document.querySelector('.light-box').classList.remove('none');
+        })
+        
+        document.querySelector('.nx').addEventListener('click',()=>{
+        switch(document.getElementById('image22').getAttribute("src")){
+            case "./sources/53.jpg":
+            document.getElementById('image22').setAttribute("src","./sources/50.jpg");
+            document.querySelector('.count').innerHTML="1/4";
+            break;
+            case "./sources/50.jpg":
+            document.getElementById('image22').setAttribute("src","./sources/51.jpg");
+            document.querySelector('.count').innerHTML="2/4";
+            break;
+            case "./sources/51.jpg":
+            document.getElementById('image22').setAttribute("src","./sources/52.jpg");
+            document.querySelector('.count').innerHTML="3/4";
+            break;
+            case "./sources/52.jpg":
+            document.getElementById('image22').setAttribute("src","./sources/53.jpg");
+            document.querySelector('.count').innerHTML="4/4";
+            break;
+        }
+        
+        })
+        document.querySelector('.pr').addEventListener('click',()=>{
+        switch(document.getElementById('image22').getAttribute("src")){
+            case "./sources/53.jpg":
+            document.getElementById('image22').setAttribute("src","./sources/52.jpg");
+            document.querySelector('.count').innerHTML="3/4";
+            break;
+            case "./sources/50.jpg":
+            document.getElementById('image22').setAttribute("src","./sources/53.jpg");
+            document.querySelector('.count').innerHTML="4/4";
+            break;
+            case "./sources/51.jpg":
+            document.getElementById('image22').setAttribute("src","./sources/50.jpg");
+            document.querySelector('.count').innerHTML="1/4";
+            break;
+            case "./sources/52.jpg":
+            document.getElementById('image22').setAttribute("src","./sources/51.jpg");
+            document.querySelector('.count').innerHTML="2/4";
+            break;
+        }
+        
+        })
+        </script>
+        
+    
+    <!--------------------------------------->
+
+    <script>
+    //interval--------------------------------------------
+       let count;
+       function onLoad(){
+        document.querySelector('.loading').classList.add('none');
+        count = 0;
+       }
+       setInterval (myTimer, 2000);
+       function myTimer(){
+        count++;
+        if(count==4){
+            document.querySelector('.swiper-button-next').click();
+            count =0;
+        }
+       }
+    //swiper script ----------------------------------------
+        const swiper = new Swiper('.swiper', {
+        // Optional parameters
+        loop: true,
+
+        // If we need pagination
+        pagination: {
+            el: '.swiper-pagination',
+        },
+
+        // Navigation arrows
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+
+        });
+    //scroll animation ----------------------------------------------
+    window.addEventListener("scroll", event => {
+            document.body.style.setProperty(
+      "--scroll",
+      (window.scrollY)
+    );
+        }, { passive: true });
+
+    //--------------------------------------------------------------
+    </script>
+    <script src="./index.js"></script>
+    
+</body>
+</html>
